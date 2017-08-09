@@ -1,0 +1,28 @@
+<ion-modal-view view-title="Post Feed">
+  <ion-header-bar>
+    <h1 class="title">Post New Feed</h1>
+    <a class="button button-assertive" ng-click="closePostFeed()">Cancel</a>
+  </ion-header-bar>
+  <ion-content scroll="false">
+   <div class="list">
+      <div style="">
+      	<div class="textarea">
+          <div class="upload-img" ng-hide="feed.img==''">
+            <div class="remove" ng-click="removePhoto()"><i class="ion-trash-a"></i></div>
+            <thumbnail class="thumbnail" ng-hide="imgthumb==''" file-type="image" source="{{imgthumb}}"></thumbnail>
+            <thumbnail class="thumbnail" ng-hide="videothumb==''" file-type="video" source="{{videothumb}}"></thumbnail>
+          </div>
+          <div class="textarea-ip">
+        	  <textarea name="message" ng-model="feed.message"></textarea>
+          </div>
+        </div>
+        <div class="actions" style="padding-left: 10px;padding-right: 10px;">
+					<!-- <span emoji-picker="message" placement="right" recent-limit="10"></span> -->
+					<div class="insert-image" ng-click="getImage()"><i class="ion-image"></i></div>
+          <div class="insert-video" ng-click="getVideo()"><i class="ion-videocamera"></i></div>
+					<button ng-click="postfeed()" class="button button-positive pull-right post-feed-btn">POST</button>
+				</div>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

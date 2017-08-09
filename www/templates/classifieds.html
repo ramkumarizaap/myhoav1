@@ -1,0 +1,57 @@
+<ion-view view-title="Classifieds" class="bg-white">
+	<ion-content class="classified-page">
+		<ion-refresher  pulling-text="Pull to refresh..."   on-refresh="doRefresh()"></ion-refresher>
+		<div class="list">
+	    <a class="item item-thumbnail-left" href="#/app/classified/1">
+	      <img src="img/bg-home.jpg">
+	      <h2>Test Classifieds</h2>
+	      <p><i class="ion-location"></i> SVS Nagar, 2nd Main Road, Valasaravakkam, Chennai, TN, IN 600087</p>
+	      <p class="posted_by">Posted by Ramkumar</p>
+	    </a>
+	    <a class="item item-thumbnail-left" href="#/app/classified/1">
+	      <img src="img/bg-home.jpg">
+	      <h2>Test Classifieds</h2>
+	      <p><i class="ion-location"></i> SVS Nagar, 2nd Main Road, Valasaravakkam, Chennai, TN, IN 600087</p>
+	      <p class="posted_by">Posted by Ramkumar</p>
+	    </a>
+	    <a class="item item-thumbnail-left" href="#/app/classified/1">
+	      <img src="img/bg-home.jpg">
+	      <h2>Test Classifieds</h2>
+	      <p><i class="ion-location"></i> SVS Nagar, 2nd Main Road, Valasaravakkam, Chennai, TN, IN 600087</p>
+	      <p class="posted_by">Posted by Ramkumar</p>
+	    </a>
+	    <a class="item item-thumbnail-left" href="#/app/classified/1">
+	      <img src="img/bg-home.jpg">
+	      <h2>Test Classifieds</h2>
+	      <p><i class="ion-location"></i> SVS Nagar, 2nd Main Road, Valasaravakkam, Chennai, TN, IN 600087</p>
+	      <p class="posted_by">Posted by Ramkumar</p>
+	    </a>
+	    <a class="item item-thumbnail-left" href="#/app/classified/1">
+	      <img src="img/bg-home.jpg">
+	      <h2>Test Classifieds</h2>
+	      <p><i class="ion-location"></i> SVS Nagar, 2nd Main Road, Valasaravakkam, Chennai, TN, IN 600087</p>
+	      <p class="posted_by">Posted by Ramkumar</p>
+	    </a>
+	    <a class="item item-thumbnail-left" href="#/app/classified/1">
+	      <img src="img/bg-home.jpg">
+	      <h2>Test Classifieds</h2>
+	      <p><i class="ion-location"></i> SVS Nagar, 2nd Main Road, Valasaravakkam, Chennai, TN, IN 600087</p>
+	      <p class="posted_by">Posted by Ramkumar</p>
+	    </a>
+	    <a class="item item-thumbnail-left" href="#/app/classified/1">
+	      <img src="img/bg-home.jpg">
+	      <h2>Test Classifieds</h2>
+	      <p><i class="ion-location"></i> SVS Nagar, 2nd Main Road, Valasaravakkam, Chennai, TN, IN 600087</p>
+	      <p class="posted_by">Posted by Ramkumar</p>
+	    </a>
+	    <a class="item item-thumbnail-left" href="#/app/classified/1">
+	      <img src="img/bg-home.jpg">
+	      <h2>Test Classifieds</h2>
+	      <p><i class="ion-location"></i> SVS Nagar, 2nd Main Road, Valasaravakkam, Chennai, TN, IN 600087</p>
+	      <p class="posted_by">Posted by Ramkumar</p>
+	    </a>
+		</div>
+		<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+	</ion-content>
+	<ion-floating-button click="showPostClassified()" has-footer="false" bottom="40px" button-color="#193670" icon="ion-plus" icon-color="#fff"></ion-floating-button>
+</ion-view>

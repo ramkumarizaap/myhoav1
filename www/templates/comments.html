@@ -1,0 +1,21 @@
+<ion-modal-view view-title="Post Feed">
+  <ion-header-bar>
+    <h1 class="title">Comments</h1>
+    <a class="button button-assertive" ng-click="closeComments()">Cancel</a>
+  </ion-header-bar>
+  <ion-content scroll="false" class="comments-modal">
+    <ion-scroll class="content">
+      <ion-list>
+        <ion-item ng-repeat="cmt in comments" class="item">{{cmt.comments}}</ion-item>
+      </ion-list>
+    </ion-scroll>
+    <div class="comment-footer">
+      <div class="input">
+        <input type="text" name="message" ng-model="commentip.message">
+      </div>
+      <div class="button-div">
+        <button ng-click="postcomment(commentip,str_id)" class="button button-balanced"><i class="ion-android-send"></i></button>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>
