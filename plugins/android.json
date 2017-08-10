@@ -7,10 +7,28 @@
         "files": {}
     },
     "installed_plugins": {
+        "com.hutchind.cordova.plugins.streamingmedia": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "io.ionic.starter"
         },
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-image-picker": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-media-capture": {
             "PACKAGE_NAME": "io.ionic.starter"
         },
         "cordova-plugin-splashscreen": {
@@ -22,28 +40,10 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "io.ionic.starter"
         },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "com.hutchind.cordova.plugins.streamingmedia": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-camera": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-image-picker": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-media-capture": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
         "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "io.ionic.starter"
         }
     },
