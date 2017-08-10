@@ -1,0 +1,100 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "https://github.com/photokandyStudios/PKVideoThumbnail.git",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "https://github.com/photokandyStudios/PKVideoThumbnail.git",
+        "spec": "git+https://github.com/photokandyStudios/PKVideoThumbnail.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:photokandyStudios/PKVideoThumbnail.git",
+          "sshUrl": "git+ssh://git@github.com/photokandyStudios/PKVideoThumbnail.git",
+          "httpsUrl": "git+https://github.com/photokandyStudios/PKVideoThumbnail.git",
+          "gitUrl": "git://github.com/photokandyStudios/PKVideoThumbnail.git",
+          "shortcut": "github:photokandyStudios/PKVideoThumbnail",
+          "directUrl": "https://raw.githubusercontent.com/photokandyStudios/PKVideoThumbnail/master/package.json"
+        }
+      },
+      "C:\\xampp\\htdocs\\myhoaold\\node_modules"
+    ]
+  ],
+  "_from": "git+https://github.com/photokandyStudios/PKVideoThumbnail.git",
+  "_id": "cordova-plugin-photokandy-video-thumbnail@2.1.0",
+  "_inCache": true,
+  "_location": "/cordova-plugin-photokandy-video-thumbnail",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "https://github.com/photokandyStudios/PKVideoThumbnail.git",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "https://github.com/photokandyStudios/PKVideoThumbnail.git",
+    "spec": "git+https://github.com/photokandyStudios/PKVideoThumbnail.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:photokandyStudios/PKVideoThumbnail.git",
+      "sshUrl": "git+ssh://git@github.com/photokandyStudios/PKVideoThumbnail.git",
+      "httpsUrl": "git+https://github.com/photokandyStudios/PKVideoThumbnail.git",
+      "gitUrl": "git://github.com/photokandyStudios/PKVideoThumbnail.git",
+      "shortcut": "github:photokandyStudios/PKVideoThumbnail",
+      "directUrl": "https://raw.githubusercontent.com/photokandyStudios/PKVideoThumbnail/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/photokandyStudios/PKVideoThumbnail.git#21120e3c3b361261c841e8f340ac890c97f6ce31",
+  "_shasum": "7a6be46039508b03a4e3c5e4d748a5db6a27b0d8",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/photokandyStudios/PKVideoThumbnail.git",
+  "_where": "C:\\xampp\\htdocs\\myhoaold\\node_modules",
+  "author": {
+    "name": "Kerri Shotts"
+  },
+  "bugs": {
+    "url": "https://github.com/photokandyStudios/PKVideoThumbnail/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-photokandy-video-thumbnail",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "dependencies": {},
+  "description": "Create video thumbnails from video files; iOS 6+, Android API 17+",
+  "devDependencies": {},
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=2.9.0"
+    }
+  ],
+  "gitHead": "21120e3c3b361261c841e8f340ac890c97f6ce31",
+  "homepage": "https://github.com/photokandyStudios/PKVideoThumbnail#readme",
+  "keywords": [
+    "video",
+    "thumbnail",
+    "ios",
+    "android",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-photokandy-video-thumbnail",
+  "optionalDependencies": {},
+  "readme": "# PKVideoThumbnail\r\n\r\nThis plugin extracts a thumbnail from a video file. The video file must be\r\nsupported by the platform, and the thumbnail will be written to a location you \r\nspecify or be returned as an ArrayBuffer or Base64-encoded string.\r\n\r\nSupports: iOS 6+, Android API Level 17+\r\n\r\nThe license is MIT, so feel free to use, enhance, etc. If you do make changes that would\r\nbenefit the community, it would be great if you would contribute them back to the original\r\nplugin, but that is not required.\r\n\r\n## Repository\r\n\r\nAvailable on [Github](https://github.com/photokandyStudios/PKVideoThumbnail). Contributions welcome!\r\n\r\n## Minimum Requirements\r\n\r\n* Cordova-ios 4.x or higher (tested 4.0.1)\r\n* Cordova-android 4.x or higher (tested 5.1.1)\r\n* iOS 6 or higher; Android API 17+ or higher\r\n\r\n## Installation\r\n\r\nAdd the plugin using Cordova's CLI:\r\n\r\n```\r\ncordova plugin add cordova-plugin-photokandy-video-thumbnail --save\r\n```\r\n\r\n## Features\r\n\r\nThe plugin supports the following abilities:\r\n\r\n* Request the thumbnail at a specific resolution (if supported by the platform)\r\n\r\n* Request a thumbnail from a specific timestamp within the video (if supported by the platform)\r\n\r\n* Pass the thumbnail in an ArrayBuffer or Base64-encoded string instead of storing to a file\r\n\r\n* Supports cdvfile:// URI scheme\r\n\r\n## Use\r\n\r\nAll interaction with the library is through `window.PKVideoThumbnail`. To request a thumbnail from a video file, simply:\r\n\r\n```\r\nwindow.PKVideoThumbnail.createThumbnail ( sourceVideoPath, targetThumbnailPath [, options] [, success, failure] );\r\n```\r\n\r\nYou can specify the following URI formats for source and target:\r\n\r\n* `file://` (if using `file:///localhost/...`, eliminate `localhost` from the string)\r\n* `cdvfile://` -- for example, `cdvfile://localhost/persistent/video.mp4`\r\n\r\nThe `options` object can specify an alternate size for the thumbnail, and can also specify quality and timestamp. \r\nIt can also specify the processing mode of the plugin.\r\n\r\n* `options.mode` -- the processing mode for the plugin.\r\n    * `file` -- saves the thumbnail to the target specified. If not specified, this is the default. \r\n       The path to the target must exist and be writeable.\r\n    * `array` -- returns an ArrayBuffer to the callback routine. In this case, `targetThumbnailPath` is ignored, but must be specified. \r\n       You can use an non-empty string like \"callback\" or \"ignore\".\r\n    * `base64` -- returns a Base64-encoded string suitable for an inline image. `targetThumbnailPath` is ignored, but must be specified. \r\n       You can use an non-empty string  like \"callback\" or \"ignore\".\r\n* `options.position` -- the timestamp from which the thumbnail should be extracted. This unit is in seconds. Not supported on\r\n  Android. `1.0` seconds is the default. Thanks to <https://github.com/nov9thgrp> for the inspiration.\r\n* `options.quality` -- the quality of the resulting JPEG from 0 - 1. 0.8 is the default, corresponding to 80%.\r\n* `options.resize` -- resize the thumbnail whilst maintaining aspect ratio\r\n    * `options.resize.width` -- the maximum width of the resulting thumbnail (in pixels)\r\n    * `options.resize.height` -- the maximum height of the resulting thumbnail (in pixels)\r\n    * The resulting thumbnail will fit within the desired size, but may not match exactly, depending upon aspect ratio.\r\n    * On Android, the width and height must neither exceed 512x384 nor the resolution of the video, or an error is generated.\r\n\r\nShould the operation succeed, the `success` callback is called with the transformed target file name in case \r\nadditional work needs to be performed. \r\n\r\nIf the operation fails, the `failure` callback is called with the reason of the failure. Failure messages are platform-specific. \r\nSee each platform's quirks below.\r\n\r\nIf you'd rather use promises, simply omit the callbacks -- for example:\r\n\r\n```js\r\nwindow.PKVideoThumbnail.createThumbnail ( sourceVideoPath, targetThumbnailPath, options)\r\n      .then((data) => {})\r\n      .catch((err) => {});\r\n```\r\n\r\n### iOS Quirks\r\n\r\n* You can extract thumbnails from videos in the application bundle. To do so, omit the URI scheme. \r\n  For example, `/assets/sample.mov` would load from the app's bundle.\r\n\r\n* A negative quality will actually succeed, although the results are undefined.\r\n\r\n#### Error Messages\r\n\r\n* Target can't be in the bundle. Source: %@, Target: %@\r\n* Could not extract thumbnail from %@ at time %f; err=%@\r\n* Didn't get a thumbnail from CGImage using %@\r\n* Could not create thumbnail. Source: %@, Target: %@, Modified Target: %@\r\n\r\n### Android Quirks\r\n\r\n* You ***cannot*** extract thumbnails from videos in your application bundle. If you must, you'll need to copy the files to a \r\ntemporary location first.\r\n\r\n* A negative quality will generate an error.\r\n\r\n* Specifying a desired thumbnail size larger than 512x384 or the source video will generate an error.\r\n\r\n* Currently does not support requesting a thumbnail from a specific timestamp. Doing so is ignored and no error is thrown.\r\n\r\n#### Error messages\r\n\r\n* Couldn't read video at %s\r\n* Could not resize thumbnail; width or height out of range?\r\n* Could not compress thumbnail to a JPEG of the desired quality.\r\n* Could not save thumbnail to %s\r\n* Could not save thumbnail; target not writeable\r\n* I/O exception saving thumbnail\r\n* JSON Exception\r\n\r\n\r\n\r\n\r\n## License\r\n\r\nMIT\r\n\r\nPermission is hereby granted, free of charge, to any person obtaining a copy of this\r\nsoftware and associated documentation files (the \"Software\"), to deal in the Software\r\nwithout restriction, including without limitation the rights to use, copy, modify,\r\nmerge, publish, distribute, sublicense, and/or sell copies of the Software, and to\r\npermit persons to whom the Software is furnished to do so, subject to the following\r\nconditions:\r\n\r\nThe above copyright notice and this permission notice shall be included in all copies\r\nor substantial portions of the Software.\r\n\r\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\r\nINCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR\r\nPURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE\r\nLIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT\r\nOR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\r\nOTHER DEALINGS IN THE SOFTWARE.\r\n",
+  "readmeFilename": "readme.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/photokandyStudios/PKVideoThumbnail.git"
+  },
+  "version": "2.1.0"
+}
