@@ -17,7 +17,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('HomeCtrl', function($q,$scope,$ionicModal,$rootScope,$ionicActionSheet,HomeService,$ionicPopup,$ionicLoading,$timeout) {
+.controller('HomeCtrl', function($q,$rootScope,$scope,$ionicModal,$cordovaImagePicker,$rootScope,$cordovaCapture,$ionicActionSheet,HomeService,$cordovaFileTransfer,$cordovaCamera,$ionicPopup,$ionicLoading,$timeout) {
   $scope.feed = {};
   $scope.feed.img = "";
   $scope.type = "";
@@ -25,7 +25,7 @@ angular.module('starter.controllers', ['ngCordova'])
   
   $scope.commentip = {message:null};
   $rootScope.imgthumb = "";$rootScope.videothumb = "";
-  var userdetails = JSON.parse(sessionStorage.getItem('userdetails'));
+  $rootScope.userdetails = JSON.parse(sessionStorage.getItem('userdetails'));
   $ionicModal.fromTemplateUrl('./templates/post-feed.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -325,7 +325,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('LoginCtrl', function($scope,$state, $stateParams,$ionicLoading,$ionicPopup,$timeout,LoginService,$http) {
+.controller('LoginCtrl', function($scope,$state, $rootScope,$stateParams,$ionicLoading,$ionicPopup,$timeout,LoginService,$http) {
   $scope.login = {};
   $scope.doLogin = function(form,values){
     if(form.$valid)
@@ -344,7 +344,7 @@ angular.module('starter.controllers', ['ngCordova'])
 
 })
 
-.controller('RegisterCtrl', function($scope,$state, $stateParams,$ionicLoading,$ionicPopup,$timeout,$cordovaCamera,$ionicActionSheet, $cordovaImagePicker,RegisterService,$cordovaFileTransfer) {
+.controller('RegisterCtrl', function($scope,$state,$rootScope, $stateParams,$ionicLoading,$ionicPopup,$timeout,$cordovaCamera,$ionicActionSheet, $cordovaImagePicker,RegisterService,$cordovaFileTransfer) {
   $scope.register = {};
   $scope.communityok = "false";
   $scope.community = {};
@@ -465,53 +465,66 @@ angular.module('starter.controllers', ['ngCordova'])
 
   })
 
-.controller('InvoiceCtrl', function($scope,$state, $stateParams,$ionicLoading,$ionicPopup,$timeout,$cordovaCamera,$ionicActionSheet, $cordovaImagePicker,InvoiceService,$cordovaFileTransfer){
+.controller('InvoiceCtrl', function($scope,$state, $stateParams,$ionicModal,$ionicLoading,$ionicPopup,$timeout,$cordovaCamera,$ionicActionSheet, $cordovaImagePicker,InvoiceService,$cordovaFileTransfer){
 
 
 })
-.controller('ClassifiedsCtrl', function($q,$scope,$state, $stateParams,$ionicModal,$ionicLoading,$ionicPopup,$timeout,$ionicActionSheet,ClassifiedService,$cordovaGeolocation,$cordovaImagePicker,$cordovaFileTransfer){
+.controller('ClassifiedsCtrl', function($q,$scope,$state,$rootScope, $stateParams,$ionicModal,$ionicLoading,$ionicPopup,$timeout,$ionicActionSheet,ClassifiedService,$cordovaGeolocation,$cordovaImagePicker,$cordovaFileTransfer){
   $scope.classified = {};$scope.classifieds = [];
-  $scope.images = {};
+  $scope.images = [];
+  $scope.items = [];
+  $scope.noMoreItemsAvailable = false;
   $scope.classified.img = "img/fresh-upload.png";
   if($state.current.name == "app.classified" && $stateParams.Id!='')
   {
-    var options = {timeout: 10000, enableHighAccuracy: true};
-    var latLng = new google.maps.LatLng("13.0827", "80.2707"); 
-    var mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    google.maps.event.addListenerOnce($scope.map, 'idle', function(){ 
-      var marker = new google.maps.Marker({
-          map: $scope.map,
-          animation: google.maps.Animation.DROP,
-          position: latLng
-      }); 
-      var infoWindow = new google.maps.InfoWindow({
-          content: "Here I am!"
-      });
-      google.maps.event.addListener(marker, 'click', function () {
-          infoWindow.open($scope.map, marker);
-      });
+    ClassifiedService.getClassifiedById($stateParams.Id).success(function(data){
+        $scope.classy = data.msg;
+        $scope.items = data.msg.photo;
+        var lat = data.msg.latitude;
+        var long = data.msg.longitude;
+        var options = {timeout: 10000, enableHighAccuracy: true};
+        var latLng = new google.maps.LatLng(lat,long); 
+        var mapOptions = {
+          center: latLng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        google.maps.event.addListenerOnce($scope.map, 'idle', function(){ 
+          var marker = new google.maps.Marker({
+              map: $scope.map,
+              animation: google.maps.Animation.DROP,
+              position: latLng
+          }); 
+          var infoWindow = new google.maps.InfoWindow({
+              content: data.msg.adname
+          });
+          google.maps.event.addListener(marker, 'click', function () {
+              infoWindow.open($scope.map, marker);
+          });
+        });
+      }).error(function(data){
+        $ionicPopup.alert({title:"Error!",template:"Can't get classifieds"});
     });
   }
   $scope.getClassified = function()
   {
+    
     $ionicLoading.show();
     ClassifiedService.getClassified().success(function(data){
       $scope.classifieds = data.msg;
-      $scope.numberOfItemsToDisplay = 2;
+      $scope.numberOfItemsToDisplay = 8;
       $scope.noMoreItemsAvailable = false;
       $ionicLoading.hide();
     }).error(function(data){
       $ionicLoading.hide();
       $scope.classifieds= [];
       $scope.noMoreItemsAvailable = true;
-      $ionicPopup.alert({title:"No Feeds!",template:data.msg});
+      $ionicPopup.alert({title:"No Classifieds!",template:data.msg});
     });
   }
+  if($state.current.name == "app.classifieds")
+    $scope.getClassified();
 
   $ionicModal.fromTemplateUrl('./templates/add-classified.html', {
     scope: $scope,
@@ -529,97 +542,83 @@ angular.module('starter.controllers', ['ngCordova'])
   };
   $scope.addImage = function()
   {
-    var options = {
-       maximumImagesCount: 1,
-       width: 100,
-       height: 100,
-       quality: 100
-      };
-     $cordovaImagePicker.getPictures(options)
+    var pick = {maximumImagesCount: 5,quality: 100};
+     $cordovaImagePicker.getPictures(pick)
       .then(function (results) {
         for (var i = 0; i < results.length; i++) {
-          $scope.images = results[i];
-          alert(results[i]);
+          $scope.images[i] = results[i];
         }
       }, function(error) {
-        // error getting photos
+          $ionicPopup.alert({title:"Error!",template:"Can't get Images."});
       });
   }
 
   $scope.doClassified = function(form,values)
   {
-    //for (var i = 0; i < $scope.images.length; i++)
-    //{
-      alert($scope.images);
-      uploadFile($scope.images);
-    //}
-    // if(form.$valid)
-    // {
-    //   $ionicLoading.show();
-    //   ClassifiedService.postClassified(values).success(function(data){
-    //     $ionicLoading.show({template:"Uploading Image....."});
-    //     uploadFile($scope.classified.img,data.row_id).then(function(res){
-    //       $ionicLoading.hide();
-    //       if(res=="true" || res==true)    
-    //       {
-    //         $ionicPopup.alert({title:"Post Success!",template:data.msg}).then(function(data){
-    //           $scope.closePostClassified();
-    //           $scope.classified = {};$scope.classified.img = "";$scope.type = "";
-    //           $scope.doRefresh();
-    //         });
-    //       }
-    //       else
-    //       {
-    //         $ionicPopup.alert({title:"Post Failed!",template:data.msg}).then(function(data){
-    //           $scope.closePostClassified();
-    //           $scope.classified = {};$scope.classified.img = "";$scope.type = "";
-    //           $scope.doRefresh();
-    //         });
-    //       }
-    //     });
-    //   })
-    //   .error(function(data){
-    //     $ionicLoading.hide();
-    //     $ionicPopup.alert({title:"Error!",template:data.msg});
-    //   });
-    // }
+    if(form.$valid)
+    {
+      $ionicLoading.show();
+      ClassifiedService.postClassified(values).success(function(data){
+        uploadFile($scope.images,data.row_id).then(function(res){
+          $ionicLoading.hide();
+          if(res==true || res=="true")
+            $ionicPopup.alert({title:"Image Upload",template:"Images uploaded successfully."}).then(function(res1){
+              $ionicLoading.hide();
+              $ionicLoading.show();
+              $ionicPopup.alert({title:"Success!",template:data.msg}).then(function(res2){
+                $ionicLoading.hide();
+                $scope.closePostClassified();
+                $scope.doRefresh();
+              });
+            });
+        });
+      })
+      .error(function(data){
+        $ionicLoading.hide();
+        $ionicPopup.alert({title:"Error!",template:data.msg});
+      });
+    }
   }
-  // $scope.doRefresh = function()
-  // {
-  //   $scope.getClassified();
-  //   $timeout(function() {
-  //      $scope.$broadcast('scroll.refreshComplete');
-  //    }, 3000);
-  // }
-
-  function uploadFile(mediaFile)
+  $scope.doRefresh = function()
   {
-    alert(mediaFile);
-    // var deferred = $q.defer();
-    var path = mediaFile;
-     var url = encodeURI("http://162.144.41.156/~izaapinn/ram/action.php");
-     //File for Upload
-     var targetPath = path;
-     //var params = {};
-     // File name only
-     var filename = targetPath.split("/").pop();
-     var options = {
-         fileKey: "file",
-         fileName: filename,
-        chunkedMode: false,
-        params : {'action':"classifiedupload"}
-     };
-     $cordovaFileTransfer.upload(url, targetPath, options).then(function (result) {
-        // deferred.resolve('true');
-        alert(JSON.stringify(result));
-     }, function (err) {
-         // deferred.reject('false');
-         alert(JSON.stringify(err));
-     }, function (progress) {
-         // PROGRESS HANDLING GOES HERE
-     });  
+    $scope.getClassified();
+    $timeout(function() {
+       $scope.$broadcast('scroll.refreshComplete');
+     }, 3000);
+  }
 
-     return deferred.promise;
+  var uploadFile = function(mediaFile,row_id='')
+  {
+
+    for (var i = 0; i < mediaFile.length; i++)
+    {
+      var deferred = $q.defer();
+      var path = mediaFile[i];
+       var url = encodeURI("http://162.144.41.156/~izaapinn/ram/action.php");
+       //File for Upload
+       var targetPath = path;
+       //var params = {};
+       // File name only
+       var filename = targetPath.split("/").pop();
+       var options = {
+           fileKey: "file",
+           fileName: filename,
+          chunkedMode: false,
+          params : {'action':"classifiedupload",row_id:row_id}
+       };
+       $cordovaFileTransfer.upload(url, targetPath, options).then(function (result) {
+          
+        }, function (err) {
+           deferred.reject('false');
+       }, function (progress) {
+           $ionicLoading.show({template:"Uploading Images "+i});
+       });
+    }
+    if(i==mediaFile.length)
+      deferred.resolve('true');
+    else
+      deferred.reject('false');
+      return deferred.promise;
   }
 
   $scope.numberOfItemsToDisplay = 8;
@@ -629,7 +628,7 @@ angular.module('starter.controllers', ['ngCordova'])
     $timeout(function() {
       $ionicLoading.hide();
       $scope.numberOfItemsToDisplay += 1;
-      if($scope.feeds.length == $scope.numberOfItemsToDisplay)
+      if($scope.classifieds.length <= $scope.numberOfItemsToDisplay)
       {
         $scope.noMoreItemsAvailable = true;
       }
@@ -637,6 +636,10 @@ angular.module('starter.controllers', ['ngCordova'])
     }, 3000);
     // alert($scope.feeds.length);
   };
+
+})
+.controller('InboxCtrl', function($q,$rootScope,$scope,$ionicModal,$cordovaImagePicker,$rootScope,$cordovaCapture,$ionicActionSheet,InboxService,$cordovaFileTransfer,$cordovaCamera,$ionicPopup,$ionicLoading,$timeout) {
+
 
 });
   

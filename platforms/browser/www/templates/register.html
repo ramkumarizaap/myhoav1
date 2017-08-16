@@ -1,0 +1,81 @@
+<ion-view hide-nav-bar="true">
+  <ion-content class="register-page">
+    <div class="community-info" ng-show="communityok=='false'">
+      <form class="communityForm" name="communityForm" novalidate method="post" ng-submit="checkCommunity(communityForm,community)" enctype="multipart/form-data">
+        <div class="list">
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Community Code</span>
+            <input type="text" placeholder="Community Code" ng-model="community.communitycode" name="communitycode" required>
+            <div class="error">
+              <p ng-show="communityForm.$submitted && !communityForm.communitycode.$dirty">* Please Enter Community Code</p>
+            </div>
+          </label>
+        </div>
+        <div class="submit-btn">
+          <button class="button icon-right button-block button-balanced" type="submit">Continue <i class="ion-chevron-right"></i></button>
+        </div>
+      </form>
+    </div>
+    <div class="personal-info" ng-show="communityok=='true'">
+    	<form class="registerForm" name="registerForm" novalidate method="post" ng-submit="doRegister(registerForm,register)" enctype="multipart/form-data">
+        <input type="hidden" ng-model="register.img" name="img">
+        <div class="list">
+        	<label class="item item-input item-floating-label upload-file" ng-click="UploadPhoto()" >
+            <div class="image">
+            	<img src="{{register.img}}">
+            </div>
+            <div class="error">
+              <p class="text-center" ng-show="registerForm.$submitted && register.img=='img/fresh-upload.png'">* Please Upload Photo</p>
+            </div>
+          </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Firstname</span>
+            <input type="text" placeholder="Firstname"   ng-model="register.firstname" name="firstname" required>
+            <div class="error">
+              <p ng-show="registerForm.$submitted && !registerForm.firstname.$dirty">* Please Enter Firstname</p>
+            </div>
+          </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Lastname</span>
+            <input type="text" placeholder="Lastname" ng-model="register.lastname" name="lastname" required>
+            <div class="error">
+              <p ng-show="registerForm.$submitted && !registerForm.lastname.$dirty">* Please Enter Lastname</p>
+            </div>
+          </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Username</span>
+            <input type="text" placeholder="Username" ng-model="register.username" name="username" required>
+            <div class="error">
+              <p ng-show="registerForm.$submitted && !registerForm.username.$dirty">* Please Enter Username</p>
+            </div>
+          </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Email-ID</span>
+            <input type="email" placeholder="Email-ID" ng-model="register.email" name="email" required>
+            <div class="error">
+              <p ng-show="registerForm.$submitted && !registerForm.email.$dirty">* Please Enter Email-ID</p>
+            </div>
+          </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Password</span>
+            <input type="password" placeholder="Password" ng-model="register.password" name="password" required>
+            <div class="error">
+              <p ng-show="registerForm.$submitted && !registerForm.username.$dirty">* Please Enter Password</p>
+            </div>
+          </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Mobile</span>
+            <input type="number" placeholder="Mobile Number" ng-model="register.mobile" name="mobile" required>
+            <div class="error">
+              <p ng-show="registerForm.$submitted && !registerForm.mobile.$dirty">* Please Enter Mobile Number</p>
+            </div>
+          </label>
+            <!-- <input type="hidden" ng-model="register.communitycode" name="communitycode" value="{{community.communitycode}}"> -->
+        </div>
+        <div class="submit-btn">
+          <button class="button icon-right button-block button-balanced" type="submit">Register <i class="ion-chevron-right"></i></button>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+</ion-view>

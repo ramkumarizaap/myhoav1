@@ -1,81 +1,81 @@
 angular.module('starter.services', [])
 
-// .service('RegisterService', function($q,$http, $rootScope) {
+.service('RegisterService', function($q,$http, $rootScope) {
 
-// 	return {
-//     RegisterUser: function(fields)
-//     {
-//         var deferred = $q.defer();
-//         var promise = deferred.promise;
-//         url = "http://162.144.41.156/~izaapinn/ram/action.php?action=register";
-//         $http({
-//           url: url,
-//           method: 'post',
-//           // dataType:"jsonp",
-//          contentType:'application/json',
-//           params: fields,
-//           headers:{'Access-Control-Allow-Origin': '*'}
-//         })
-//        .then(function(response) 
-//         {
-//           var user_data = response.data;
-//           if(user_data.status=="success")
-//             	deferred.resolve(response.data);
-//           else
-//             	deferred.reject(response.data);
-//         });
+	return {
+    RegisterUser: function(fields)
+    {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=register";
+        $http({
+          url: url,
+          method: 'post',
+          // dataType:"jsonp",
+         contentType:'application/json',
+          params: fields,
+          headers:{'Access-Control-Allow-Origin': '*'}
+        })
+       .then(function(response) 
+        {
+          var user_data = response.data;
+          if(user_data.status=="success")
+            	deferred.resolve(response.data);
+          else
+            	deferred.reject(response.data);
+        });
 
-//         promise.success = function(fn)
-//         {
-//             promise.then(fn);
-//             return promise;
-//         }
-//         promise.error = function(fn)
-//         {
-//             promise.then(null, fn);
-//             return promise;
-//         }
-//         //console.log(promise);
-//         return promise;
-//     },
-//     checkCommunity:function(fields)
-//     {
-//         var deferred = $q.defer();
-//         var promise = deferred.promise;
-//         url = "http://162.144.41.156/~izaapinn/ram/action.php?action=community_check";
-//         $http({
-//           url: url,
-//           method: 'post',
-//           // dataType:"jsonp",
-//          contentType:'application/json',
-//           params: fields,
-//           headers:{'Access-Control-Allow-Origin': '*'}
-//         })
-//        .then(function(response) 
-//         {
-//           var user_data = response.data;
-//           if(user_data.status=="success")
-//               deferred.resolve(response.data);
-//           else
-//               deferred.reject(response.data);
-//         });
+        promise.success = function(fn)
+        {
+            promise.then(fn);
+            return promise;
+        }
+        promise.error = function(fn)
+        {
+            promise.then(null, fn);
+            return promise;
+        }
+        //console.log(promise);
+        return promise;
+    },
+    checkCommunity:function(fields)
+    {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=community_check";
+        $http({
+          url: url,
+          method: 'post',
+          // dataType:"jsonp",
+         contentType:'application/json',
+          params: fields,
+          headers:{'Access-Control-Allow-Origin': '*'}
+        })
+       .then(function(response) 
+        {
+          var user_data = response.data;
+          if(user_data.status=="success")
+              deferred.resolve(response.data);
+          else
+              deferred.reject(response.data);
+        });
 
-//         promise.success = function(fn)
-//         {
-//             promise.then(fn);
-//             return promise;
-//         }
-//         promise.error = function(fn)
-//         {
-//             promise.then(null, fn);
-//             return promise;
-//         }
-//         //console.log(promise);
-//         return promise;
-//     },
-//    }
+        promise.success = function(fn)
+        {
+            promise.then(fn);
+            return promise;
+        }
+        promise.error = function(fn)
+        {
+            promise.then(null, fn);
+            return promise;
+        }
+        //console.log(promise);
+        return promise;
+    },
+   }
 
-// })
+})
 .service('LoginService', function($q,$http, $rootScope) {
 
   return {
@@ -298,156 +298,230 @@ angular.module('starter.services', [])
      },
    }
 
+})
+.service('InvoiceService', function($q,$http, $rootScope) {
+
+  return {
+    RegisterUser: function(fields)
+    {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=register";
+        $http({
+          url: url,
+          method: 'post',
+          // dataType:"jsonp",
+         contentType:'application/json',
+          params: fields,
+          headers:{'Access-Control-Allow-Origin': '*'}
+        })
+       .then(function(response) 
+        {
+          var user_data = response.data;
+          if(user_data.status=="success")
+              deferred.resolve(response.data);
+          else
+              deferred.reject(response.data);
+        });
+
+        promise.success = function(fn)
+        {
+            promise.then(fn);
+            return promise;
+        }
+        promise.error = function(fn)
+        {
+            promise.then(null, fn);
+            return promise;
+        }
+        //console.log(promise);
+        return promise;
+    },
+    checkCommunity:function(fields)
+    {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=community_check";
+        $http({
+          url: url,
+          method: 'post',
+          // dataType:"jsonp",
+         contentType:'application/json',
+          params: fields,
+          headers:{'Access-Control-Allow-Origin': '*'}
+        })
+       .then(function(response) 
+        {
+          var user_data = response.data;
+          if(user_data.status=="success")
+              deferred.resolve(response.data);
+          else
+              deferred.reject(response.data);
+        });
+
+        promise.success = function(fn)
+        {
+            promise.then(fn);
+            return promise;
+        }
+        promise.error = function(fn)
+        {
+            promise.then(null, fn);
+            return promise;
+        }
+        //console.log(promise);
+        return promise;
+    },
+   }
+
+})
+.service('ClassifiedService', function($q,$http, $rootScope) {
+
+  return {
+    postClassified:function(fields)
+    {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=post_classified";
+        $http({
+          url: url,
+          method: 'post',
+          // dataType:"jsonp",
+         contentType:'application/json',
+          params: fields,
+          headers:{'Access-Control-Allow-Origin': '*'}
+        })
+       .then(function(response) 
+        {
+          var user_data = response.data;
+          if(user_data.status=="success")
+              deferred.resolve(response.data);
+          else
+              deferred.reject(response.data);
+        });
+
+        promise.success = function(fn)
+        {
+            promise.then(fn);
+            return promise;
+        }
+        promise.error = function(fn)
+        {
+            promise.then(null, fn);
+            return promise;
+        }
+        //console.log(promise);
+        return promise;
+    },
+    getClassified:function(fields)
+    {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=get_classified";
+        $http({
+          url: url,
+          method: 'post',
+          // dataType:"jsonp",
+         contentType:'application/json',
+          params: fields,
+          headers:{'Access-Control-Allow-Origin': '*'}
+        })
+       .then(function(response) 
+        {
+          var user_data = response.data;
+          if(user_data.status=="success")
+              deferred.resolve(response.data);
+          else
+              deferred.reject(response.data);
+        });
+
+        promise.success = function(fn)
+        {
+            promise.then(fn);
+            return promise;
+        }
+        promise.error = function(fn)
+        {
+            promise.then(null, fn);
+            return promise;
+        }
+        //console.log(promise);
+        return promise;
+    },
+    getClassifiedById:function(id)
+    {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=get_classified_by_id";
+        $http({
+          url: url,
+          method: 'post',
+          // dataType:"jsonp",
+         contentType:'application/json',
+          params: {id:id},
+          headers:{'Access-Control-Allow-Origin': '*'}
+        })
+       .then(function(response) 
+        {
+          var user_data = response.data;
+          if(user_data.status=="success")
+              deferred.resolve(response.data);
+          else
+              deferred.reject(response.data);
+        });
+
+        promise.success = function(fn)
+        {
+            promise.then(fn);
+            return promise;
+        }
+        promise.error = function(fn)
+        {
+            promise.then(null, fn);
+            return promise;
+        }
+        //console.log(promise);
+        return promise;
+    },
+  }
+})
+.service('InboxService', function($q,$http, $rootScope) {
+
+  return {
+    postClassified:function(fields)
+    {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=post_classified";
+        $http({
+          url: url,
+          method: 'post',
+          // dataType:"jsonp",
+         contentType:'application/json',
+          params: fields,
+          headers:{'Access-Control-Allow-Origin': '*'}
+        })
+       .then(function(response) 
+        {
+          var user_data = response.data;
+          if(user_data.status=="success")
+              deferred.resolve(response.data);
+          else
+              deferred.reject(response.data);
+        });
+
+        promise.success = function(fn)
+        {
+            promise.then(fn);
+            return promise;
+        }
+        promise.error = function(fn)
+        {
+            promise.then(null, fn);
+            return promise;
+        }
+        //console.log(promise);
+        return promise;
+    },
+  }
 });
-
-// .service('InvoiceService', function($q,$http, $rootScope) {
-
-//   return {
-//     RegisterUser: function(fields)
-//     {
-//         var deferred = $q.defer();
-//         var promise = deferred.promise;
-//         url = "http://162.144.41.156/~izaapinn/ram/action.php?action=register";
-//         $http({
-//           url: url,
-//           method: 'post',
-//           // dataType:"jsonp",
-//          contentType:'application/json',
-//           params: fields,
-//           headers:{'Access-Control-Allow-Origin': '*'}
-//         })
-//        .then(function(response) 
-//         {
-//           var user_data = response.data;
-//           if(user_data.status=="success")
-//               deferred.resolve(response.data);
-//           else
-//               deferred.reject(response.data);
-//         });
-
-//         promise.success = function(fn)
-//         {
-//             promise.then(fn);
-//             return promise;
-//         }
-//         promise.error = function(fn)
-//         {
-//             promise.then(null, fn);
-//             return promise;
-//         }
-//         //console.log(promise);
-//         return promise;
-//     },
-//     checkCommunity:function(fields)
-//     {
-//         var deferred = $q.defer();
-//         var promise = deferred.promise;
-//         url = "http://162.144.41.156/~izaapinn/ram/action.php?action=community_check";
-//         $http({
-//           url: url,
-//           method: 'post',
-//           // dataType:"jsonp",
-//          contentType:'application/json',
-//           params: fields,
-//           headers:{'Access-Control-Allow-Origin': '*'}
-//         })
-//        .then(function(response) 
-//         {
-//           var user_data = response.data;
-//           if(user_data.status=="success")
-//               deferred.resolve(response.data);
-//           else
-//               deferred.reject(response.data);
-//         });
-
-//         promise.success = function(fn)
-//         {
-//             promise.then(fn);
-//             return promise;
-//         }
-//         promise.error = function(fn)
-//         {
-//             promise.then(null, fn);
-//             return promise;
-//         }
-//         //console.log(promise);
-//         return promise;
-//     },
-//    }
-
-// })
-// .service('ClassifiedService', function($q,$http, $rootScope) {
-
-//   return {
-//     postClassified:function(fields)
-//     {
-//         var deferred = $q.defer();
-//         var promise = deferred.promise;
-//         url = "http://162.144.41.156/~izaapinn/ram/action.php?action=post_classified";
-//         $http({
-//           url: url,
-//           method: 'post',
-//           // dataType:"jsonp",
-//          contentType:'application/json',
-//           params: fields,
-//           headers:{'Access-Control-Allow-Origin': '*'}
-//         })
-//        .then(function(response) 
-//         {
-//           var user_data = response.data;
-//           if(user_data.status=="success")
-//               deferred.resolve(response.data);
-//           else
-//               deferred.reject(response.data);
-//         });
-
-//         promise.success = function(fn)
-//         {
-//             promise.then(fn);
-//             return promise;
-//         }
-//         promise.error = function(fn)
-//         {
-//             promise.then(null, fn);
-//             return promise;
-//         }
-//         //console.log(promise);
-//         return promise;
-//     },
-//     getClassified:function(fields)
-//     {
-//         var deferred = $q.defer();
-//         var promise = deferred.promise;
-//         url = "http://162.144.41.156/~izaapinn/ram/action.php?action=get_classified";
-//         $http({
-//           url: url,
-//           method: 'post',
-//           // dataType:"jsonp",
-//          contentType:'application/json',
-//           params: fields,
-//           headers:{'Access-Control-Allow-Origin': '*'}
-//         })
-//        .then(function(response) 
-//         {
-//           var user_data = response.data;
-//           if(user_data.status=="success")
-//               deferred.resolve(response.data);
-//           else
-//               deferred.reject(response.data);
-//         });
-
-//         promise.success = function(fn)
-//         {
-//             promise.then(fn);
-//             return promise;
-//         }
-//         promise.error = function(fn)
-//         {
-//             promise.then(null, fn);
-//             return promise;
-//         }
-//         //console.log(promise);
-//         return promise;
-//     }
-//   }
-// });

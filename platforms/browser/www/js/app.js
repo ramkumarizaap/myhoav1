@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers','starter.services','ion-floating-menu','angular-thumbnails','ion-gallery'])
 
 .run(function($ionicPlatform) {
 
@@ -98,8 +98,8 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
           controller: 'HomeCtrl'
         }
       }
-    });
-/*
+    })
+
   .state('app.invoices', {
     url: '/invoices',
     cache:false,
@@ -139,7 +139,17 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
         controller: 'ClassifiedsCtrl'
       }
     }
-  });*/
+  })
+   .state('app.inbox', {
+    url: '/inbox',
+    cache:false,
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/inbox.html',
+        controller: 'InboxCtrl'
+      }
+    }
+  });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/app/inbox');
 });

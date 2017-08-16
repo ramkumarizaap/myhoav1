@@ -1,0 +1,79 @@
+<ion-view view-title="PayNow" class="bg-white">
+	<ion-content class="paynow">
+		<ion-list>
+		  <ion-radio ng-model="choice" ng-value="'Credit Card'">Credit Card</ion-radio>
+		  <ion-radio ng-model="choice" ng-value="'Paypal'">Paypal</ion-radio>
+		</ion-list>
+		<div class="credit-card" ng-show="choice=='Credit Card'">
+			<h4>Credit/Debit Card Details</h4>
+			<form method="post" name="payForm" novalidate ng-submit="doCard(payForm,pay)">
+				<div class="list">
+				  <label class="item item-input">
+				    <input type="text" ng-model="pay.name" name="name" placeholder="Name on Card" required>
+				  </label>
+				  <div class="error">
+	          <p ng-show="payForm.$submitted && !payForm.name.$dirty">* Please Enter Name on Card</p>
+	        </div>
+				  <label class="item item-input">
+				    <input type="text" placeholder="Card Number" required ng-model="pay.card_number" name="card_number">
+				  </label>
+				  <div class="error">
+	          <p ng-show="payForm.$submitted && !payForm.card_number.$dirty">* Please Enter Card Number</p>
+	        </div>
+				  <label class="item item-input item-select">
+				    <div class="input-label">&nbsp;</div>
+				    <select required name="expmonth" ng-model="pay.expmonth">
+				    	<option value="">Expiry Month</option>
+				      <option value="01">01</option><option value="02">02</option><option value="03">03</option>
+				      <option value="04">04</option><option value="05">05</option><option value="06">06</option>
+				      <option value="07">07</option><option value="08">08</option><option value="09">09</option>
+				      <option value="10">10</option><option value="11">11</option><option value="12">12</option>
+				    </select>
+				  </label>
+				  <label class="item item-input item-select">
+				    <div class="input-label">&nbsp;</div>
+				    <select ng-init="(_Array = []).length = 15;" required name="expyear" ng-model="pay.expyear">
+				    		<option value="">Expiry Year</option>
+						    <option ng-repeat="i in _Array track by $index">{{$index + date}}</option>
+						</select>
+				  </label>
+				  <div class="error">
+	          <p ng-show="(payForm.$submitted && !payForm.expmonth.$dirty) || (payForm.$submitted && !payForm.expyear.$dirty)">* Please Enter Expiry Month/Year</p>
+	        </div>
+				  <label class="item item-input">
+				    <input type="text" placeholder="CVV Number" required ng-model="pay.cvv" name="cvv">
+				  </label>
+				  <div class="error">
+	          <p ng-show="payForm.$submitted && !payForm.cvv.$dirty">* Please Enter CVV Number</p>
+	        </div>
+				</div>
+				<div class="action-btn">
+					<button type="submit" class="button button-balanced">Pay Now</button>
+				</div>
+			</form>
+		</div>
+		<div class="paypal" ng-show="choice=='Paypal'">
+			<h4>Paypal Email-ID</h4>
+			<form method="post" novalidate name="paypalForm" ng-submit="doPaypal(paypalForm,paypal)">
+				<div class="list">
+			  	<label class="item item-input">
+			    	<input type="email" placeholder="Paypal Email-ID" name="email" ng-model="paypal.email" required>
+			  	</label>
+			  	<div class="error">
+	          <p ng-show="paypalForm.$submitted && !paypalForm.email.$dirty">* Please Enter Email-ID</p>
+	          <p ng-show="paypalForm.email.$error.email">* Please Enter valid Email!</span>
+	        </div>
+	        <label class="item item-input">
+			    	<input type="email" placeholder="Paypal Password" name="password" ng-model="paypal.password" required>
+			  	</label>
+			  	<div class="error">
+	          <p ng-show="paypalForm.$submitted && !paypalForm.email.$dirty">* Please Enter Password</p>
+	        </div>
+				</div>
+				<div class="action-btn">
+					<button type="submit" class="button button-balanced">Pay Now</button>
+				</div>
+			</form>
+		</div>
+	</ion-content>
+</ion-view>
