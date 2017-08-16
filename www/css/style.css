@@ -17,7 +17,7 @@ h1.title img{height: 43px;width: 90px;float: left;}
 .login-page form input,.register-page form input{color: #fff;    border-bottom: 1px solid #fff;}
 .register-page form .input-label,.login-page form .input-label{color: #fff;}
 .login-page .logo{text-align: center;}
-.login-page .error p,.register-page .error p{color: #ff5f5f;padding: 4px;}
+.error p{color: #ff5f5f;padding: 4px;}
 .post-feed-btn{float: right;padding:6px !important;margin-top: -6px;line-height: 0px;min-width: 50px;min-height: 27px;}
 .insert-image,.insert-video{position: relative;top: -9px;width: 30px;height: 30px;border-radius: 100px;float: left;background: #193670;padding: 5px;color: #fff;text-align: center;}
 .insert-video{margin-left: 10px;}
@@ -80,11 +80,47 @@ overflow:auto;}
 .comments-modal .comment-footer .input input{width: 100%;padding-right: 10px;}
 .comments-modal .comment-footer .button-div{float: right;width: 15%;height: 100%;}
 .comments-modal .comment-footer .button-div button{border-radius: 0;height: 100%;width: 100%;}
-.inv-status{width: 20%;padding: 5px;margin-top: 10px;margin-left: 10px;text-align: center;font-weight: bold;float: left;}
+.inv-status{margin-bottom:10px;width: 20%;padding: 5px;margin-top: 10px;margin-left: 10px;text-align: center;font-weight: bold;float: left;}
 .inv-pay{width: 35%;padding: 5px;margin-top: 10px;margin-left: 10px;text-align: center;font-weight: bold;float: right;border: 1px solid #00ff1f;background: #b3f3b3;margin-right: 10px;}
+.inv-pay a{text-decoration: none;color: #000;}
 .inv-status.due,.inv-status.unpaid{background: #f1b0b0;color: red;border: 1px solid red;}
 .inv-status.paid{background: #b4f1b0;color: #268401;border: 1px solid #37802a;}
 .inv-status.draft{background: #dadada;color: #828282;border: 1px solid #a0a0a0;}
-.list:last-child.card {padding-bottom: 10px;}
 .invoice .inv-amount{text-align: center;font-size: 26px;font-weight: bold;}
 .invoice .inv-img{position: absolute;top: 16px;left: 16px;max-width: 40px;max-height: 40px;width: 100%;height: 100%;border-radius: 50%;font-size: 40px;}
+.invoice .view-details{width: 100%;clear: both;padding:5px;text-decoration: none;text-align: center;border-top: 1px solid #ccc;background: #193670;}
+.invoice .view-details a{text-decoration: none;width: 100%;display: block;color: #fff;}
+.invoice_details ul.list{height: 65vh;overflow-x: hidden;overflow-y: auto;}
+.invoice_details .total_footer{text-align: right;height: 20vh;}
+.pull-right{float: right;}.pull-left{float: left;}
+.paynow .item-radio .radio-icon{left:0 !important;}
+.paynow .item-radio .item-content{padding-left: 45px;}
+.credit-card,.paypal{margin-top: 20px;}
+.credit-card h4,.paypal h4{padding: 5px;}
+.paynow .item-select{width: 50%;float: left;    border-right: none;}
+.paynow .item-select .input-label{width: 0%;}
+.paynow .item-select select{direction: ltr;width: 100%;max-width: 100%;}
+.action-btn{text-align: center;}
+.classified-page p.posted_by{font-size: 11px;text-align: right;position: relative;top: 20px}
+#map {
+    width: 100%;
+    height: 30%;
+}
+.classified-page .header{padding: 10px;}
+.classified-page .banner{width: 100%;height: 30vh;}
+.classified-page .banner img{height: 100%;width: 100%;}
+.classified-modal .ad-image,.inbox-image{width: 100%;height: 25vh;padding: 0;}
+.classified-modal .ad-image img,.inbox-image img{width: 100%;height: 100%;}
+.classified-modal .ad-photo span{width: 100%;}
+.event-page .event-date{position: absolute;top: 10px;left: 10px;max-width: 80px;max-height: 80px;width: 20%;height: 100%;background: #193670;border-radius: 5px;color: #fff;text-align: center;font-weight: bold;padding: 10px;}
+.event-page a.item-thumbnail-left{padding-left: 80px;}
+.event-page .posted-by{font-size: 11px;text-align: right;}
+.event-page .respond{background: #193670;width: 65%;padding: 5px;color: #fff;}
+.event-page .card{margin: 0;}
+.gallery-view{height: 100%;}
+.gallery-view div.row{height: 100% !important;}
+.tabs-background-blue{background: #193670;color: #fff;}
+.tabs-background-blue a{color: #fff;}
+.inboxForm{margin-bottom: 60px;height: 83vh;overflow-y: auto;overflow-x: hidden;}
+.inboxForm .action-btn{margin-top: 10px;}
+.inboxForm .remove-icon{width: 30px;height: 30px;position: absolute;z-index: 99;right: 15px;top: 105px;text-align: center;padding: 5px;border-radius: 100px;background: #ef473a;color: #fff;}

@@ -6,8 +6,8 @@
 	<ion-content class="classified-modal">
 		<form method="post" name="classifiedForm" novalidate="" ng-submit="doClassified(classifiedForm,classified)">
 			<div class="list">
-				<label class="item item-input ad-image">
-			    <img src="{{classified.img}}">
+				<label class="item item-input ad-image" ng-click="addImage()">
+			    <img src="{{classified.img}}" ng-click="addImage()">
 			  </label>
 			  <div class="error">
 			  	<p ng-show="classifiedForm.$submitted && classified.img=='img/fresh-upload.png'"> * Please Select Image</p>
@@ -23,9 +23,6 @@
 			  </label>
 			  <div class="error">
 			  	<p ng-show="classifiedForm.$submitted && !classifiedForm.description.$dirty"> * Please Enter Description</p>
-			  </div>
-			  <div class="item  item-input ad-photo">
-			    <span ng-click="addImage()"><i class="ion-image"></i> Add Photo</span>
 			  </div>
 			  <label class="item item-input">
 			    <input type="text" placeholder="Street 1" name="street1" ng-model="classified.street1" required>
