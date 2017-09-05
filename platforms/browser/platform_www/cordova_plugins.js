@@ -385,7 +385,8 @@ module.exports.metadata =
     "cordova-plugin-file": "4.3.3",
     "cordova-plugin-file-transfer": "1.6.3",
     "cordova-plugin-media-capture": "1.4.3",
-    "cordova.plugins.diagnostic": "3.6.6"
+    "cordova.plugins.diagnostic": "3.6.6",
+    "cordova-plugin-datepicker": "0.9.3"
 }
 // BOTTOM OF METADATA
 });

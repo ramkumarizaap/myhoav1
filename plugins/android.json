@@ -16,6 +16,9 @@
         "cordova-plugin-console": {
             "PACKAGE_NAME": "io.ionic.starter"
         },
+        "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "io.ionic.starter"
         },

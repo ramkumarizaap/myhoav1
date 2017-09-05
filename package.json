@@ -3,14 +3,11 @@
     "version": "0.0.1",
     "description": "An Ionic project",
     "devDependencies": {
-        "@ionic/cli-plugin-cordova": "1.6.2",
-        "@ionic/cli-plugin-gulp": "1.1.1",
-        "@ionic/cli-plugin-ionic1": "2.1.1",
         "gulp": "^3.5.6",
         "gulp-clean-css": "^3.7.0",
         "gulp-rename": "^1.2.0",
         "gulp-sass": "^3.1.0",
-        "ionic": "3.7.0"
+        "ionic": "3.9.1"
     },
     "dependencies": {
         "@ionic/cli-plugin-cordova": "^1.6.2",
@@ -19,6 +16,7 @@
         "cordova-plugin-camera": "^2.4.1",
         "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-console": "^1.0.5",
+        "cordova-plugin-datepicker": "^0.9.3",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-file": "^4.3.3",
         "cordova-plugin-file-transfer": "^1.6.3",
@@ -45,7 +43,8 @@
             "cordova-plugin-file": {},
             "cordova-plugin-file-transfer": {},
             "cordova-plugin-media-capture": {},
-            "cordova.plugins.diagnostic": {}
+            "cordova.plugins.diagnostic": {},
+            "cordova-plugin-datepicker": {}
         },
         "platforms": [
             "android"

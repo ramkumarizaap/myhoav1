@@ -98,7 +98,7 @@ angular.module('starter.services', [])
           if(user_data.status=="success")
               deferred.resolve(response.data);
           else
-              deferred.reject(response.data);
+             deferred.reject(response.data);
         });
 
         promise.success = function(fn)
@@ -488,11 +488,11 @@ angular.module('starter.services', [])
 .service('InboxService', function($q,$http, $rootScope) {
 
   return {
-    postClassified:function(fields)
+    replyMessage:function(fields)
     {
         var deferred = $q.defer();
         var promise = deferred.promise;
-        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=post_classified";
+        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=reply_message";
         $http({
           url: url,
           method: 'post',
@@ -522,6 +522,256 @@ angular.module('starter.services', [])
         }
         //console.log(promise);
         return promise;
+    },
+    composeMessage:function(fields)
+    {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=compose_message";
+        $http({
+          url: url,
+          method: 'post',
+          // dataType:"jsonp",
+         contentType:'application/json',
+          params: fields,
+          headers:{'Access-Control-Allow-Origin': '*'}
+        })
+       .then(function(response) 
+        {
+          var user_data = response.data;
+          if(user_data.status=="success")
+              deferred.resolve(response.data);
+          else
+              deferred.reject(response.data);
+        });
+
+        promise.success = function(fn)
+        {
+            promise.then(fn);
+            return promise;
+        }
+        promise.error = function(fn)
+        {
+            promise.then(null, fn);
+            return promise;
+        }
+        //console.log(promise);
+        return promise;
+    },
+    getInbox:function(id)
+    {
+      var deferred = $q.defer();
+      var promise = deferred.promise;
+      url = "http://162.144.41.156/~izaapinn/ram/action.php?action=get_inbox";
+      $http({
+        url: url,
+        method: 'post',
+        // dataType:"jsonp",
+       contentType:'application/json',
+        params: {id:id},
+        headers:{'Access-Control-Allow-Origin': '*'}
+      })
+     .then(function(response) 
+      {
+        var user_data = response.data;
+        if(user_data.status=="success")
+            deferred.resolve(response.data);
+        else
+            deferred.reject(response.data);
+      });
+
+      promise.success = function(fn)
+      {
+          promise.then(fn);
+          return promise;
+      }
+      promise.error = function(fn)
+      {
+          promise.then(null, fn);
+          return promise;
+      }
+      //console.log(promise);
+      return promise;
+    },
+    getInboxById:function(id)
+    {
+      var deferred = $q.defer();
+      var promise = deferred.promise;
+      url = "http://162.144.41.156/~izaapinn/ram/action.php?action=get_inbox_by_id";
+      $http({
+        url: url,
+        method: 'post',
+        // dataType:"jsonp",
+       contentType:'application/json',
+        params: {id:id},
+        headers:{'Access-Control-Allow-Origin': '*'}
+      })
+     .then(function(response) 
+      {
+        var user_data = response.data;
+        if(user_data.status=="success")
+            deferred.resolve(response.data);
+        else
+            deferred.reject(response.data);
+      });
+
+      promise.success = function(fn)
+      {
+          promise.then(fn);
+          return promise;
+      }
+      promise.error = function(fn)
+      {
+          promise.then(null, fn);
+          return promise;
+      }
+      //console.log(promise);
+      return promise;
+    },
+  }
+})
+.service('EventsService', function($q,$http, $rootScope) {
+
+  return {
+    respondEvent:function(code,event_id,user_id)
+    {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=respond_event";
+        $http({
+          url: url,
+          method: 'post',
+          // dataType:"jsonp",
+         contentType:'application/json',
+          params: {code:code,event_id:event_id,user_id:user_id},
+          headers:{'Access-Control-Allow-Origin': '*'}
+        })
+       .then(function(response) 
+        {
+          var user_data = response.data;
+          if(user_data.status=="success")
+              deferred.resolve(response.data);
+          else
+              deferred.reject(response.data);
+        });
+
+        promise.success = function(fn)
+        {
+            promise.then(fn);
+            return promise;
+        }
+        promise.error = function(fn)
+        {
+            promise.then(null, fn);
+            return promise;
+        }
+        //console.log(promise);
+        return promise;
+    },
+    getEvents:function(id)
+    {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        url = "http://162.144.41.156/~izaapinn/ram/action.php?action=get_events";
+        $http({
+          url: url,
+          method: 'post',
+          // dataType:"jsonp",
+         contentType:'application/json',
+          params: {community_id:id},
+          headers:{'Access-Control-Allow-Origin': '*'}
+        })
+       .then(function(response) 
+        {
+          var user_data = response.data;
+          if(user_data.status=="success")
+              deferred.resolve(response.data);
+          else
+              deferred.reject(response.data);
+        });
+
+        promise.success = function(fn)
+        {
+            promise.then(fn);
+            return promise;
+        }
+        promise.error = function(fn)
+        {
+            promise.then(null, fn);
+            return promise;
+        }
+        //console.log(promise);
+        return promise;
+    },
+    getInbox:function(id)
+    {
+      var deferred = $q.defer();
+      var promise = deferred.promise;
+      url = "http://162.144.41.156/~izaapinn/ram/action.php?action=get_inbox";
+      $http({
+        url: url,
+        method: 'post',
+        // dataType:"jsonp",
+       contentType:'application/json',
+        params: {id:id},
+        headers:{'Access-Control-Allow-Origin': '*'}
+      })
+     .then(function(response) 
+      {
+        var user_data = response.data;
+        if(user_data.status=="success")
+            deferred.resolve(response.data);
+        else
+            deferred.reject(response.data);
+      });
+
+      promise.success = function(fn)
+      {
+          promise.then(fn);
+          return promise;
+      }
+      promise.error = function(fn)
+      {
+          promise.then(null, fn);
+          return promise;
+      }
+      //console.log(promise);
+      return promise;
+    },
+    getInboxById:function(id)
+    {
+      var deferred = $q.defer();
+      var promise = deferred.promise;
+      url = "http://162.144.41.156/~izaapinn/ram/action.php?action=get_inbox_by_id";
+      $http({
+        url: url,
+        method: 'post',
+        // dataType:"jsonp",
+       contentType:'application/json',
+        params: {id:id},
+        headers:{'Access-Control-Allow-Origin': '*'}
+      })
+     .then(function(response) 
+      {
+        var user_data = response.data;
+        if(user_data.status=="success")
+            deferred.resolve(response.data);
+        else
+            deferred.reject(response.data);
+      });
+
+      promise.success = function(fn)
+      {
+          promise.then(fn);
+          return promise;
+      }
+      promise.error = function(fn)
+      {
+          promise.then(null, fn);
+          return promise;
+      }
+      //console.log(promise);
+      return promise;
     },
   }
 });

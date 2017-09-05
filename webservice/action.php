@@ -120,6 +120,21 @@ switch ($action)
    	$output['status'] 	= 'success';
    	$output['msg'] 	= "Form submited successfully!";
   break;
+  case 'inboxupload':
+  	$file_loc = $_FILES['file']['tmp_name'];
+   	$row_id = $_REQUEST['row_id'];
+   	if(!file_exists("uploads/inbox/".$_REQUEST['row_id']."/"))
+   	{
+   		mkdir("uploads/inbox/".$_REQUEST['row_id'],0777);
+   	}
+ 		$filename = uniqid()."-inbox.png";
+ 		$folder = "uploads/inbox/".$_REQUEST['row_id']."/".$filename;
+ 		$up['file'] = "http://162.144.41.156/~izaapinn/ram/".$folder;
+  	move_uploaded_file($file_loc,$folder);
+   	$update = update(array("id"=>$row_id),$up,"hoa_messages");
+   	$output['status'] 	= 'success';
+   	$output['msg'] 	= "Form submited successfully!";
+  break;
   case 'classifiedupload':
   	$file_loc = $_FILES['file']['tmp_name'];
   	$row_id = $_REQUEST['row_id'];
@@ -263,6 +278,74 @@ switch ($action)
   		$output['status'] = "failed";
 			$output['msg'] = "No Classified Found.";	
   	}
+  break;
+  case 'compose_message':
+  	$ins['subject'] = $_REQUEST['subject'];
+  	$ins['message'] = $_REQUEST['message'];
+  	$ins['created_date'] = date("Y-m-d H:i:s");
+  	$ins['from_id'] = $_REQUEST['user_id'];
+  	$ins['to_id'] = 1;//$_REQUEST['to_id'];
+  	$ins['admin_read'] = 0;
+  	$ins['user_read'] = 1;
+  	$ins_id = insert($ins,"hoa_messages");
+		if($ins_id)
+		{
+			$output['status'] = "success";
+			$output['row_id'] = $ins_id;
+			$output['msg'] = "Message composed successfully.";
+		}
+		else
+		{
+			$output['status'] = "failed";
+			$output['msg'] = "Message not composed.";	
+		}
+  break;
+  case 'reply_message':
+  	$ins['message'] = $_REQUEST['description'];
+  	$ins['from_id'] = $_REQUEST['user_id'];
+  	$ins['to_id'] = 1;
+  	$ins['subject'] = "Reply";
+  	$ins['reply_id'] = $_REQUEST['reply_id'];
+  	$ins['admin_read'] = 0;
+  	$ins['user_read'] = 1;
+  	$ins_id = insert($ins,"hoa_messages");
+		if($ins_id)
+		{
+			$output['status'] = "success";
+			$output['row_id'] = $ins_id;
+			$output['msg'] = "Posted successfully.";
+		}
+		else
+		{
+			$output['status'] = "failed";
+			$output['msg'] = "Message not posted.";	
+		}
+  break;
+  case 'get_inbox':
+  	$id = $_REQUEST['id'];$result=array();$i=0;
+  	$sql = mysqli_query($con,"select * from hoa_messages where from_id='".$id."' and reply_id=0");
+  	if(mysqli_num_rows($sql) > 0)
+  	{
+	  	while ($r=mysqli_fetch_assoc($sql))
+	  	{
+	  		$result[$i]['id'] = $r['id'];
+	  		$result[$i]['from_id'] = $r['from_id'];
+	  		$result[$i]['to_id'] = $r['to_id'];
+	  		$result[$i]['subject'] = $r['subject'];
+	  		$result[$i]['message'] = $r['message'];
+	  		$result[$i]['from_name'] = select_single(array("id"=>$r['from_id']),"hoa_users")['firstname'];
+	  		$result[$i]['to_name'] = select_single(array("id"=>$r['to_id']),"hoa_users")['firstname'];
+	  		$i++;
+	  	}
+	  	$output['status'] = "failed";
+	  	$output['msg'] = $result;
+	  }
+	  else
+	  {
+	  	$output['status'] = "failed";
+	  	$output['msg'] = "No Messages Found.";
+	  }
+
   break;
    	// echo json_encode($output);
 	case 'db':

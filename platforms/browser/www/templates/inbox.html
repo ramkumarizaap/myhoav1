@@ -1,27 +1,54 @@
 <ion-view view-title="Inbox" class="bg-white">
 	<ion-content>
-		<div class="tabs tabs-icon-top tabs-background-blue">
-		  <a  ng-init="tabinbox=true;activeButton = 'a';"  class="tab-item"  ng-class="{ 'active': activeButton === 'a' }" ng-click="tabinbox=true;tabcompose=false;activeButton = 'a';">
-		    <i class="icon ion-archive"></i>
-		    Inbox
-		  </a>
-		  <a ng-init="tabcompose=false" class="tab-item"  ng-class="{ 'active': activeButton === 'b' }" ng-click="tabcompose=true;tabinbox=false;activeButton = 'b'">
-		    <i class="icon ion-email"></i>
-		    Compose
-		  </a>
-		</div>
 		<div class="" ng-show="tabinbox">
-			<div class="list">
-		    <a class="item item-avatar" href="#">
+			<div class="list" ng-repeat="msg in messages">
+		    <a class="item item-avatar" href="#/app/viewmessage/{{msg.id}}">
 		      <img src="img/icon.png">
-		      <h2>Venkman</h2>
-		      <p>Back off, man. I'm a scientist.</p>
-		      <p class="text-right"><i class="ion-calendar"></i> July 21</p>
+		      <h2>{{msg.to_name}}</h2>
+		      <p>{{msg.subject}}</p>
+		      <p class="text-right"><i class="ion-calendar"></i> {{msg.created_date}}</p>
 		    </a>
 			</div>
 		</div>
 		<div class="" ng-show="tabcompose">
-			dfkdsfgnkj
+			<form method="post" name="inboxForm" class="inboxForm" novalidate="" ng-submit="doCompose(inboxForm,inbox)">
+				<div class="list">
+					<label class="item item-input inbox-image" ng-click="showAttach()">
+				    <img src="{{reply.img}}" ng-click="showAttach()">
+				  </label>
+				  <div class="remove-icon" ng-show="remicon" ng-click="remImage()">
+				  	<i class="ion-trash-b"></i>
+				  </div>
+				  <div class="error">
+				  	<p ng-show="inboxForm.$submitted && inbox.img=='img/fresh-upload.png'"> * Please Select Image</p>
+				  </div>
+				  <label class="item item-input">
+				    <input type="text" placeholder="Subject" name="subject" ng-model="inbox.subject" required>
+				  </label>
+				  <div class="error">
+				  	<p ng-show="inboxForm.$submitted && !inboxForm.subject.$dirty"> * Please Enter Subject</p>
+				  </div>
+				  <label class="item item-input">
+				    <textarea required placeholder="Message" style="resize:none;" rows="10" name="message" ng-model="inbox.message"></textarea>
+				  </label>
+				  <div class="error">
+				  	<p ng-show="inboxForm.$submitted && !inboxForm.message.$dirty"> * Please Enter Message</p>
+				  </div>
+				  <div class="action-btn">
+						<button class="button button-balanced">Send Now</button>
+					</div>
+				</div>
+			</form>
 		</div>
 	</ion-content>
+	<div class="tabs tabs-icon-top tabs-background-blue">
+	  <a  ng-init="tabinbox=true;activeButton = 'a';"  class="tab-item"  ng-class="{ 'active': activeButton === 'a' }" ng-click="tabinbox=true;tabcompose=false;activeButton = 'a';">
+	    <i class="icon ion-archive"></i>
+	    Inbox
+	  </a>
+	  <a ng-init="tabcompose=false" class="tab-item"  ng-class="{ 'active': activeButton === 'b' }" ng-click="tabcompose=true;tabinbox=false;activeButton = 'b'">
+	    <i class="icon ion-email"></i>
+	    Compose
+	  </a>
+	</div>
 </ion-view>

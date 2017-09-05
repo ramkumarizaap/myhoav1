@@ -45,6 +45,9 @@
         },
         "cordova.plugins.diagnostic": {
             "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "io.ionic.starter"
         }
     },
     "dependent_plugins": {

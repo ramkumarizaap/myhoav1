@@ -8,7 +8,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','io
 
 .run(function($ionicPlatform) {
 
- 
+
 
   $ionicPlatform.ready(function($rootScope) {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -52,7 +52,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','io
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      StatusBar.show();
     }
   });
 })
@@ -149,7 +149,47 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services','io
         controller: 'InboxCtrl'
       }
     }
+  })
+   .state('app.viewmessage', {
+    url: '/viewmessage/:Id',
+    cache:false,
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/view-message.html',
+        controller: 'InboxCtrl'
+      }
+    }
+  })
+   .state('app.events', {
+    url: '/events',
+    cache:false,
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/events.html',
+        controller: 'EventsCtrl'
+      }
+    }
+  })
+  .state('app.viewevent', {
+    url: '/viewevent/:Id',
+    cache:false,
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/viewevent.html',
+        controller: 'EventsCtrl'
+      }
+    }
+  })
+   .state('app.add-event', {
+    url: '/add-event',
+    cache:false,
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/add-event.html',
+        controller: 'EventsCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/inbox');
+  $urlRouterProvider.otherwise('/app/login');
 });
